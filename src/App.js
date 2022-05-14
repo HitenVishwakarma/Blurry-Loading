@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
+  const [load, setLoad] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoad(load + 1);
+    }, 1000);
+    if (load > 10) {
+      clearInterval(interval);
+    }
+  }, [load]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <h1>Blurry Loading</h1> */}
+      <section className="bg"></section>
+      <div className="loading-text">{load}%</div>
+    </>
   );
 }
 
